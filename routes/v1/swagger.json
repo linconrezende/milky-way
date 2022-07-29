@@ -1,0 +1,133 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/examples": {
+      "get": {
+        "tags": [
+          "Examples"
+        ],
+        "summary": "List examples",
+        "description": "List some examples",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/example": {
+      "post": {
+        "tags": [
+          "Examples"
+        ],
+        "summary": "Add new example",
+        "description": "Add new example",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "example": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Examples"
+        ],
+        "summary": "Update an example",
+        "description": "Update an example. See documentation: https://mongoosejs.com/docs/api.html#query_Query-updateOne",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Some description...",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "filter": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "62e41577d8e0110b58592582"
+                    }
+                  }
+                },
+                "update": {
+                  "type": "object",
+                  "properties": {
+                    "$set": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "test3_edit"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "$set"
+                  ]
+                },
+                "options": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/example/{id}": {
+      "delete": {
+        "tags": [
+          "Examples"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
