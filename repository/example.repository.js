@@ -28,8 +28,12 @@ class ExampleRepository {
     async updateExample(args) {
         let data = {};
         try {
-            data = await Example.updateOne(...args);
-            return data;
+            if (!args.filter || !args.update) {
+                throw new Error('Filter and update are required!')
+            } else {
+                data = await Example.updateOne(args.filter, args.update, args.options || {});
+                return data;
+            }
         } catch(err) {
             logger.error('Error::' + err);
             throw err;
