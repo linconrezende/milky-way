@@ -5,7 +5,11 @@ const version = process.argv && process.argv[2] && process.argv[2].indexOf('v') 
 const swaggerAutogen = require('swagger-autogen')();
 const outputFile = `./routes/${version}/swagger.json`;
 console.log(path.join(__dirname, 'server.js'))
-const endpointsFiles = [`./routes/${version}/example.routes.js`];
+const endpointsFiles = [
+  `./routes/${version}/example.routes.js`,
+  `./routes/${version}/farm.routes.js`,
+  `./routes/${version}/farmer.routes.js`
+];
 swaggerAutogen(outputFile, endpointsFiles).then(() => {
   require('./server.js'); // Your project's root file
 });

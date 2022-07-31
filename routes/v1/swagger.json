@@ -128,6 +128,260 @@
           }
         }
       }
+    },
+    "/api/v1/farms": {
+      "get": {
+        "tags": [
+          "Farms"
+        ],
+        "summary": "List farms",
+        "description": "List some farms",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/farm": {
+      "post": {
+        "tags": [
+          "Farms"
+        ],
+        "summary": "Add new farm",
+        "description": "Add new farm",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Some description...",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "farm": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Farms"
+        ],
+        "summary": "Update an farm",
+        "description": "Update an farm. See documentation: https://mongoosejs.com/docs/api.html#query_Query-updateOne",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Some description...",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "filter": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "62e41577d8e0110b58592582"
+                    }
+                  }
+                },
+                "update": {
+                  "type": "object",
+                  "properties": {
+                    "$set": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "test3_edit"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "$set"
+                  ]
+                },
+                "options": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/farm/{id}": {
+      "delete": {
+        "tags": [
+          "Farms"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/farmers": {
+      "get": {
+        "tags": [
+          "Farmers"
+        ],
+        "summary": "List farmers",
+        "description": "List some farmers",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/farmer": {
+      "post": {
+        "tags": [
+          "Farmers"
+        ],
+        "summary": "Add new farmer",
+        "description": "Add new farmer. It must belong to a existing farm",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Some description...",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "farmer": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "string"
+                    },
+                    "farm": {
+                      "type": "string",
+                      "example": "62e5c141bd79af5be3dc6119"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Farmers"
+        ],
+        "summary": "Update an farmer",
+        "description": "Update an farmer. See documentation: https://mongoosejs.com/docs/api.html#query_Query-updateOne",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Some description...",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "filter": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "62e41577d8e0110b58592582"
+                    }
+                  }
+                },
+                "update": {
+                  "type": "object",
+                  "properties": {
+                    "$set": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "test3_edit"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "$set"
+                  ]
+                },
+                "options": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/farmer/{id}": {
+      "delete": {
+        "tags": [
+          "Farmers"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }
