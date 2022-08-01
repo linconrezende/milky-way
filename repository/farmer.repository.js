@@ -1,7 +1,6 @@
 const { connect, disconnect } = require('../config/db.config');
 const { Farmer } = require('../model/farmer.model');
 const logger = require('../logger/api.logger');
-const { Farm } = require('../model/farm.model');
 
 class FarmerRepository {
 
@@ -18,17 +17,8 @@ class FarmerRepository {
     async createFarmer(farmer) {
         let data = {};
         try {
-            if (farmer && farmer.farm) {
-                let _farm = await Farm.findOne({_id: farmer.farm});
-                if (_farm && _farm._id) {
-                    data = await Farmer.create(farmer);
-                    return data;
-                } else {
-                    throw new Error(`Farm with id ${farmer.farm} does not exists!`)
-                }
-            } else {
-                throw new Error(`Farmer must belong to a farm`)
-            }
+            data = await Farmer.create(farmer);
+            return data;
         } catch(err) {
             logger.error('Error::' + err);
             throw err
