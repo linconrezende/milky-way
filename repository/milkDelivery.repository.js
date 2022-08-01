@@ -1,23 +1,23 @@
 const { connect, disconnect } = require('../config/db.config');
-const { Farmer } = require('../model/farmer.model');
+const { MilkDelivery } = require('../model/milkDelivery.model');
 const logger = require('../logger/api.logger');
 
-class FarmerRepository {
+class MilkDeliveryRepository {
 
     constructor() {
         connect();
     }
 
-    async getFarmers() {
-        const farmers = await Farmer.find({}).populate({ path: 'farm', model: 'farms' });
-        console.log('farmers:::', farmers);
-        return farmers;
+    async getMilkDeliveries() {
+        const milkDeliveries = await MilkDelivery.find({}).populate('farmer').populate('price').populate('farm');
+        console.log('milkDeliveries:::', milkDeliveries);
+        return milkDeliveries;
     }
 
-    async createFarmer(farmer) {
+    async createMilkDelivery(milkDelivery) {
         let data = {};
         try {
-            data = await Farmer.create(farmer);
+            data = await MilkDelivery.create(milkDelivery);
             return data;
         } catch(err) {
             logger.error('Error::' + err);
@@ -25,13 +25,13 @@ class FarmerRepository {
         }
     }
 
-    async updateFarmer(args) {
+    async updateMilkDelivery(args) {
         let data = {};
         try {
             if (!args.filter || !args.update) {
                 throw new Error('Filter and update are required!')
             } else {
-                data = await Farmer.updateOne(args.filter, args.update, args.options || {});
+                data = await MilkDelivery.updateOne(args.filter, args.update, args.options || {});
                 return data;
             }
         } catch(err) {
@@ -40,10 +40,10 @@ class FarmerRepository {
         }
     }
 
-    async deleteFarmer(farmerId) {
+    async deleteMilkDelivery(milkDeliveryId) {
         let data = {};
         try {
-            data = await Farmer.deleteOne({_id : farmerId});
+            data = await MilkDelivery.deleteOne({_id : milkDeliveryId});
             return data;
         } catch(err) {
             logger.error('Error::' + err);
@@ -53,4 +53,4 @@ class FarmerRepository {
 
 }
 
-module.exports = new FarmerRepository();
+module.exports = new MilkDeliveryRepository();

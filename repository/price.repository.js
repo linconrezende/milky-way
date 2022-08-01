@@ -1,23 +1,23 @@
 const { connect, disconnect } = require('../config/db.config');
-const { Farmer } = require('../model/farmer.model');
+const { Price } = require('../model/price.model');
 const logger = require('../logger/api.logger');
 
-class FarmerRepository {
+class PriceRepository {
 
     constructor() {
         connect();
     }
 
-    async getFarmers() {
-        const farmers = await Farmer.find({}).populate({ path: 'farm', model: 'farms' });
-        console.log('farmers:::', farmers);
-        return farmers;
+    async getPrices() {
+        const prices = await Price.find({});
+        console.log('prices:::', prices);
+        return prices;
     }
 
-    async createFarmer(farmer) {
+    async createPrice(price) {
         let data = {};
         try {
-            data = await Farmer.create(farmer);
+            data = await Price.create(price);
             return data;
         } catch(err) {
             logger.error('Error::' + err);
@@ -25,13 +25,13 @@ class FarmerRepository {
         }
     }
 
-    async updateFarmer(args) {
+    async updatePrice(args) {
         let data = {};
         try {
             if (!args.filter || !args.update) {
                 throw new Error('Filter and update are required!')
             } else {
-                data = await Farmer.updateOne(args.filter, args.update, args.options || {});
+                data = await Price.updateOne(args.filter, args.update, args.options || {});
                 return data;
             }
         } catch(err) {
@@ -40,10 +40,10 @@ class FarmerRepository {
         }
     }
 
-    async deleteFarmer(farmerId) {
+    async deletePrice(priceId) {
         let data = {};
         try {
-            data = await Farmer.deleteOne({_id : farmerId});
+            data = await Price.deleteOne({_id : priceId});
             return data;
         } catch(err) {
             logger.error('Error::' + err);
@@ -53,4 +53,4 @@ class FarmerRepository {
 
 }
 
-module.exports = new FarmerRepository();
+module.exports = new PriceRepository();

@@ -382,6 +382,296 @@
           }
         }
       }
+    },
+    "/api/v1/prices": {
+      "get": {
+        "tags": [
+          "Prices"
+        ],
+        "summary": "List prices",
+        "description": "List some prices",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/price": {
+      "post": {
+        "tags": [
+          "Prices"
+        ],
+        "summary": "Add new price",
+        "description": "Add new price",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Some description...",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "type": "object",
+                  "properties": {
+                    "date_from": {
+                      "type": "string",
+                      "example": "01/01/2022"
+                    },
+                    "date_to": {
+                      "type": "string",
+                      "example": "06/31/2022"
+                    },
+                    "price_base": {
+                      "type": "number",
+                      "example": 1.8
+                    },
+                    "cost_per_km_min": {
+                      "type": "number",
+                      "example": 0.05
+                    },
+                    "cost_per_km_max": {
+                      "type": "number",
+                      "example": 0.06
+                    },
+                    "price_bonus_production": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "distance_min": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "distance_max": {
+                      "type": "number",
+                      "example": 50
+                    },
+                    "volume_bonus_production": {
+                      "type": "number",
+                      "example": 10000
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Prices"
+        ],
+        "summary": "Update an price",
+        "description": "Update an price. See documentation: https://mongoosejs.com/docs/api.html#query_Query-updateOne",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Some description...",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "filter": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "62e41577d8e0110b58592582"
+                    }
+                  }
+                },
+                "update": {
+                  "type": "object",
+                  "properties": {
+                    "$set": {
+                      "type": "object",
+                      "properties": {
+                        "property_name": {
+                          "type": "string",
+                          "example": "prop_value"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "$set"
+                  ]
+                },
+                "options": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/price/{id}": {
+      "delete": {
+        "tags": [
+          "Prices"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/milkDeliveries": {
+      "get": {
+        "tags": [
+          "MilkDeliveries"
+        ],
+        "summary": "List milkDeliveries",
+        "description": "List some milkDeliveries",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/milkDelivery": {
+      "post": {
+        "tags": [
+          "MilkDeliveries"
+        ],
+        "summary": "Add new milkDelivery",
+        "description": "Add new milkDelivery. It must belong to a existing farm",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Some description...",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "milkDelivery": {
+                  "type": "object",
+                  "properties": {
+                    "farmer": {
+                      "type": "string",
+                      "example": "62e5c141bd79af5be3dc6119"
+                    },
+                    "volume": {
+                      "type": "number",
+                      "example": 15000
+                    },
+                    "date": {
+                      "type": "string",
+                      "example": "MM/DD/YYYY hh:mm"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "MilkDeliveries"
+        ],
+        "summary": "Update an milkDelivery",
+        "description": "Update an milkDelivery. See documentation: https://mongoosejs.com/docs/api.html#query_Query-updateOne",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Some description...",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "filter": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "62e41577d8e0110b58592582"
+                    }
+                  }
+                },
+                "update": {
+                  "type": "object",
+                  "properties": {
+                    "$set": {
+                      "type": "object",
+                      "properties": {
+                        "property_name": {
+                          "type": "string",
+                          "example": "prop_value"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "$set"
+                  ]
+                },
+                "options": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/milkDelivery/{id}": {
+      "delete": {
+        "tags": [
+          "MilkDeliveries"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }

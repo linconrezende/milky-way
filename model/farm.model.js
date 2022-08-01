@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 const farmSchema = new mongoose.Schema({
     name :{
-        type:String,
+        type: String,
         required: '{PATH} is required!'
+    },
+    distance: {
+        type: 'number',
+        required: '{PATH} is required! It is the distance between the factory and the farm, in KM'
     },
     createDate: 'date',
     updatedDate: 'date',

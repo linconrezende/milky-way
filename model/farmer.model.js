@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { Farm } = require('../model/farm.model');
 
 const farmerSchema = new mongoose.Schema({
     name :{
@@ -8,7 +9,15 @@ const farmerSchema = new mongoose.Schema({
     farm: {
         type: mongoose.Schema.Types.ObjectId,
         ref:'farms',
-        required: '{PATH} is required!'
+        validate: {
+            validator: function (val) {
+                return new Promise(async (resolve) => {
+                    let _farm = await Farm.findOne({_id: val});
+                    resolve(_farm && _farm._id ? true : false)
+                });
+            },
+            message: 'You must provide a valid farm id'
+        },
     },
     createDate: 'date',
     updatedDate: 'date',
