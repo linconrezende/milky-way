@@ -51,6 +51,24 @@ class FarmerRepository {
         }
     }
 
+    async volumeDelivered(filters) {
+        let _dtStart = new Date(`${filters.month.split('/')[0]}/01/${filters.month.split('/')[1]}`)
+        let _dtEnd = new Date(`${parseInt(filters.month.split('/')[0]) + 1}/01/${filters.month.split('/')[1]}`)
+        _dtEnd.setDate(_dtEnd.getDate() -1)
+
+        const farmer = await Farmer.find({_id: filters.farmer}).populate({
+            path: 'milk_deliveries',
+            match: {
+                $and: [
+                    {farmer: filters.farmer},
+                    {date: { $lte: new Date(_dtEnd) }},
+                    {date: { $gte: new Date(_dtStart) }},
+                ]
+            },
+        });
+        return farmer;
+    }
+
 }
 
 module.exports = new FarmerRepository();

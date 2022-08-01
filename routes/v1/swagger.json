@@ -672,6 +672,45 @@
           }
         }
       }
+    },
+    "/api/v1/volume_delivered": {
+      "post": {
+        "tags": [
+          "Queries"
+        ],
+        "summary": "Daily volume and monthly average",
+        "description": "Consultation of the daily volume and monthly average",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Some description...",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "farmer": {
+                      "type": "string",
+                      "example": "62e5c141bd79af5be3dc6119"
+                    },
+                    "month": {
+                      "type": "string",
+                      "example": "MM/YYYY"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
     }
   }
 }
