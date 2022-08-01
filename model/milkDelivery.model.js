@@ -57,6 +57,7 @@ milkDeliverySchema.pre('save', async function(next) {
         const FARMER = await Farmer.findOne({_id: this.farmer}).populate('farm')
         const FARM = FARMER.farm
         this.farm = FARM._id
+        this.price = P._id
 
         let _base_price = this.volume * P.price_base
         let _distanceCost = (FARM.distance >= P.distance_min && FARM.distance <= P.distance_max) ? (P.cost_per_km_min || 0) : (P.cost_per_km_max || 0)
