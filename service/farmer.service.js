@@ -20,6 +20,10 @@ class FarmerService {
         return await farmerRepository.deleteFarmer(farmerId);
     }
 
+    async volumeDelivered(filters) {
+        return await farmerRepository.volumeDelivered(filters);
+    }
+
 }
 
 module.exports = new FarmerService();

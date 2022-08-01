@@ -23,5 +23,16 @@ class FarmerController {
         logger.info('Controller: deleteFarmer', farmerId);
         return await farmerService.deleteFarmer(farmerId);
     }
+    async volumeDelivered(filters) {
+        if (!filters) {
+            throw new Error('You must provide a filter to this query!')
+        } else if (!filters.farmer) {
+            throw new Error('You must provide a farmer!')
+        } else if (!filters.month) {
+            throw new Error('You must provide a month with a year (MM/YYYY)')
+        }
+        logger.info('Controller: volumeDelivered', filters);
+        return await farmerService.volumeDelivered(filters);
+    }
 }
 module.exports = new FarmerController();

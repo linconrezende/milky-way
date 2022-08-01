@@ -10,7 +10,8 @@ const endpointsFiles = [
   `./routes/${version}/farm.routes.js`,
   `./routes/${version}/farmer.routes.js`,
   `./routes/${version}/price.routes.js`,
-  `./routes/${version}/milkDelivery.routes.js`
+  `./routes/${version}/milkDelivery.routes.js`,
+  `./routes/${version}/query.routes.js`
 ];
 swaggerAutogen(outputFile, endpointsFiles).then(() => {
   require('./server.js'); // Your project's root file

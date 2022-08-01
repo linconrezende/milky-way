@@ -7,6 +7,7 @@ const v1_FarmsRouter = require('./routes/v1/farm.routes');
 const v1_FarmersRoute = require('./routes/v1/farmer.routes');
 const v1_PricesRouter = require('./routes/v1/price.routes');
 const v1_MilkDeliveriesRoute = require('./routes/v1/milkDelivery.routes');
+const v1_QueriesRoute = require('./routes/v1/query.routes');
 
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
@@ -23,6 +24,7 @@ app.use("/api/v1", v1_FarmsRouter);
 app.use("/api/v1", v1_FarmersRoute);
 app.use("/api/v1", v1_PricesRouter);
 app.use("/api/v1", v1_MilkDeliveriesRoute);
+app.use("/api/v1", v1_QueriesRoute);
 
 app.get('/', (req, res) => {
     res.send(`<h1>API Works !!!</h1>`)

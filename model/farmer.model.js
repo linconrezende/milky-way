@@ -26,6 +26,33 @@ const farmerSchema = new mongoose.Schema({
     { timestamps: { createDate: 'created_at', updatedDate: 'updated_at'}}
 );
 
+farmerSchema.virtual('milk_deliveries',
+    {
+        ref: 'milkDeliveries',
+        localField: '_id',
+        foreignField: 'farmer',
+        justOne: false
+    }
+);
+farmerSchema.virtual('total_volume_delivered').get(function () {
+    if (!this.milk_deliveries) {
+        return undefined
+    } else {
+        let _sum = (this.milk_deliveries || []).reduce((sum, D) => { return sum + D.volume }, 0)
+        return _sum
+    }
+})
+farmerSchema.virtual('average_volume_delivered').get(function () {
+    if (!this.milk_deliveries || !this.total_volume_delivered) {
+        return undefined
+    } else {
+        let _avg = this.total_volume_delivered / this.milk_deliveries.length
+        return _avg
+    }
+})
+
+farmerSchema.set('toObject', { virtuals: true })
+farmerSchema.set('toJSON', { virtuals: true })
 const Farmer = mongoose.model('farmers', farmerSchema);
 
 module.exports = {
