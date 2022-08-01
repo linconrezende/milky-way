@@ -711,6 +711,45 @@
           }
         }
       }
+    },
+    "/api/v1/milk_deliveries_paid_per_month": {
+      "post": {
+        "tags": [
+          "Queries"
+        ],
+        "summary": "Monthly paid amount to farmer",
+        "description": "Consultation of the amount paid per month",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Some description...",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "farmer": {
+                      "type": "string",
+                      "example": "62e5c141bd79af5be3dc6119"
+                    },
+                    "year": {
+                      "type": "number",
+                      "example": 2022
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
     }
   }
 }

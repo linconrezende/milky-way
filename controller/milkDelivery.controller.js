@@ -9,6 +9,12 @@ class MilkDeliveryController {
         return await milkDeliveryService.getMilkDeliveries();
     }
 
+    async milkDeliveriesPaidPerMonth(filters) {
+        logger.info('Controller: milkDeliveriesPaidPerMonth')
+        // todo: paginate
+        return await milkDeliveryService.milkDeliveriesPaidPerMonth(filters);
+    }
+
     async createMilkDelivery(milkDelivery) {
         logger.info('Controller: createMilkDelivery', milkDelivery);
         return await milkDeliveryService.createMilkDelivery(milkDelivery);
