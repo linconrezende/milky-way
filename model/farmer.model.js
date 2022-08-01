@@ -50,6 +50,26 @@ farmerSchema.virtual('average_volume_delivered').get(function () {
         return _avg
     }
 })
+farmerSchema.virtual('total_paid').get(function () {
+    if (!this.milk_deliveries) {
+        return undefined
+    } else {
+        let _sum = (this.milk_deliveries || []).reduce((sum, D) => { return sum + D.due_amount }, 0)
+        return _sum
+    }
+})
+farmerSchema.virtual('price_per_liter').get(function () {
+    if (!this.milk_deliveries || !this.total_volume_delivered || !this.total_paid) {
+        return undefined
+    } else {
+        let _pricePerLiter = this.total_volume_delivered / this.total_paid
+        return {
+            value: _pricePerLiter,
+            BRL: _pricePerLiter.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}),
+            USD: _pricePerLiter.toLocaleString('en-us', {style: 'currency', currency: 'USD'}),
+        }
+    }
+})
 
 farmerSchema.set('toObject', { virtuals: true })
 farmerSchema.set('toJSON', { virtuals: true })
