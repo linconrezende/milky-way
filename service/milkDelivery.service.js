@@ -8,6 +8,10 @@ class MilkDeliveryService {
         return await milkDeliveryRepository.getMilkDeliveries();
     }
 
+    async milkDeliveriesPaidPerMonth(filters) {
+        return await milkDeliveryRepository.milkDeliveriesPaidPerMonth(filters);
+    }
+
     async createMilkDelivery(milkDelivery) {
         return await milkDeliveryRepository.createMilkDelivery(milkDelivery);
     }
